@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package  payment;
+
+service  Payment {
+  rpc AddPayment(PaymentRequest) returns (PaymentResponse_message) {}
+  rpc UpdatePayment(PaymentRequest) returns (PaymentResponse_message){}
+  rpc DeletePayment(PaymentRequest_del) returns (PaymentResponse_message){}
+  rpc GetPaymentById(PaymentRequest_get) returns (PaymentResponse) {}
+}
+
+message PaymentRequest {
+  string payment_type = 1;
+  string payment_card_or_cash_details = 2;
+  int32 order_amount = 3;
+  int32 order_id = 4;
+}
+
+message PaymentResponse_show {
+  string payment_type = 1;
+  string payment_card_or_cash_details = 2;
+  int32 order_amount - 3;
+}
+
+message PaymentResponse_message{
+  string payment_response =1;
+}
+
+message PaymentResponse {
+  PaymentResponse_show payment_response = 1;
+}
+
+message PaymentRequest_get {
+  int32 order_id;
+}
+
+message  PaymentRequest_del {
+  int32 order_id = 1;
+}

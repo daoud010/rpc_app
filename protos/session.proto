@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package session;
+
+
+service Session {
+  rpc Authenticate(Auth_user) returns (Auth_response){}
+  rpc IsExist(User) returns (SessionResponse) {}
+  rpc AddSession(SessionRequest) returns (SessionResponse) {}
+  rpc GetSessionTraffic(SessionRequest_No_Params) returns (SessionResponse) {}
+}
+
+message SessionRequest{
+  string client = 1;
+  string session_date_time = 2;
+  int 32 user_id = 3;
+}
