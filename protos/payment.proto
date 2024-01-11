@@ -19,7 +19,7 @@ message PaymentRequest {
 message PaymentResponse_show {
   string payment_type = 1;
   string payment_card_or_cash_details = 2;
-  int32 order_amount - 3;
+  int32 order_amount = 3;
 }
 
 message PaymentResponse_message{
@@ -31,7 +31,7 @@ message PaymentResponse {
 }
 
 message PaymentRequest_get {
-  int32 order_id;
+  int32 order_id = 1;
 }
 
 message  PaymentRequest_del {
