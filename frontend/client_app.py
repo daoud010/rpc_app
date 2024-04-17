@@ -1,9 +1,9 @@
 import os
 import secrets
 
-from flask import *
+from flask import Flask, request, render_template, redirect, session
 
-from frontend.session_client import SessionClient
+from session_client import SessionClient
 
 from frontend.Order import OrderManager
 
