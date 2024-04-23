@@ -13,5 +13,27 @@ service Session {
 message SessionRequest{
   string client = 1;
   string session_date_time = 2;
-  int 32 user_id = 3;
+  int32 user_id = 3;
+}
+
+message Auth_user {
+  string username = 1;
+  string password = 2;
+}
+
+message Auth_response {
+  int32 user_id = 1;
+  string auth_response = 2;
+}
+
+message User {
+  int32 user_id = 1;
+}
+
+message SessionResponse{
+  string session_response = 1;
+}
+
+message SessionRequest_No_Params {
+  int32 user_id = 1;
 }

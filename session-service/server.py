@@ -41,7 +41,7 @@ class SessionService(session_service.SessionServicer):
         except Exception as e:
             result = session_message.Auth_response(auth_response="Failure", user_id=-1)
 
-        sessions.conn.commit()
+        sessions_conn.commit()
         return result
 
     def AddSession(self, request, context):
@@ -50,7 +50,7 @@ class SessionService(session_service.SessionServicer):
             with sessions_conn.cursor() as cursor:
                 sql = "IMSERT INTO session_table (client_ip, session_date_time) VALUES (%s, %s)"
                 exe = cursor.execute(sql, (request.client_ip, request.session_date_time))
-                return session.message.SessionResponse(session_response=str(exe))
+                return session_message.SessionResponse(session_response=str(exe))
 
         except Exception as e:
             result = session_message.SessionResponse(session_response=str(e))
@@ -61,14 +61,14 @@ class SessionService(session_service.SessionServicer):
     def GetSessionTraffic(self, request, context):
         result = None
         try:
-            with sessions.conn.cursor() as cursor:
+            with sessions_conn.cursor() as cursor:
                 sql = "SELECT count(*) from session_table"
                 cursor.execute(sql)
                 exe = cursor.fetchone()
-                return session.message.SessionResponse(session_response=str(exe))
+                return session_message.SessionResponse(session_response=str(exe))
 
         except Exception as e:
-            result = session.message.SessionResponse(session_response=str(e))
+            result = session_message.SessionResponse(session_response=str(e))
 
         sessions_conn.commit()
         return result

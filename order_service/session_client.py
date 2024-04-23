@@ -14,7 +14,7 @@ class SessionClient():
         self.stub = service.SessionStub(self.channel)
 
     def Authenticate(self, username, password):
-        user_info = message.Auth_user(username=username, password=password)
+        user_info = message.Auth_user(username= username, password=password)
         return self.stub.Authenticate(user_info)
 
     def IsExist(self, user_id):
@@ -22,10 +22,11 @@ class SessionClient():
         return self.stub.IsExist(user_info)
 
     def AddSession(self, client_ip, session_date_time, user_id):
-        session_info = message.SessionRequest(client_ip=client_ip,
-                                              session_date_time=session_date_time, user_id=user_id)
+        session_info = message.SessionRequest(client_ip= client_ip, session_date_time=session_date_time,
+                                              user_id=user_id)
         return self.stub.AddSession(session_info)
 
     def GetSessionTraffic(self):
         session_info = message.SessionRequest_No_Params()
         return self.stub.GetSessionTraffic(session_info)
+

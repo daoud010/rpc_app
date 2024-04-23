@@ -1,0 +1,52 @@
+syntax ="proto3";
+
+package order;
+
+service Order{
+  rpc AddOrder(OrderRequest) returns (OrderResponse) {}
+  rpc EditOrder(OrderRequest) returns (OrderResponse) {}
+  rpc CancelOrder(OrderRequest_cancel) returns (OrderResponse) {}
+  rpc GetAllOrders(OrderRequest_all) returns (OrderResponse_all) {}
+}
+
+message OrderRequest_all {
+  int32 user_id = 1;
+}
+
+message OrderRequest {
+  string order_description = 1;
+  string payment_type = 2;
+  string payment_card_or_cash_details = 3;
+  int32 order_amount = 4;
+  int32 user_id = 5;
+}
+
+message OrderResponse{
+  string order_response = 1;
+
+}
+message OrderResponse_get {
+  string order_description = 1;
+  string payment_type = 2;
+  string payment_card_or_cash_details = 3;
+  int32 order_amount = 4;
+  int32 order_id = 5;
+}
+
+message OrderResponse_all {
+  repeated OrderResponse_get order_response = 1;
+}
+
+message OrderRequest_edit {
+  string order_description = 1;
+  string payment_type = 2;
+  string payment_card_or_cash_details = 3;
+  int32 order_amount = 4;
+  int32 order_id = 5;
+  int32 user_id = 6;
+}
+
+message OrderRequest_cancel {
+  int32 user_id = 1;
+  int32 order_id =2;
+}

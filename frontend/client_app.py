@@ -3,9 +3,9 @@ import secrets
 
 from flask import Flask, request, render_template, redirect, session
 
+from Order import OrderManager
+from order_client import OrderClient
 from session_client import SessionClient
-
-from frontend.Order import OrderManager
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -38,6 +38,7 @@ def index():
         om.order_amount = order.order_amount
         om.order_id = order.order_id
         list_of_orders.append(om)
+
     return render_template("index.html", orders_list=list_of_orders)
 
 
